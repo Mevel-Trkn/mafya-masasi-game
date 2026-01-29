@@ -37,12 +37,17 @@ function playSFX(sfxIdOrElement) {
   activeSFXCount++;
 
   try{ sfx.currentTime = 0; }catch(e){}
+  
+  // Önceki onended handler'ı temizle
+  sfx.onended = null;
+  
   sfx.play().catch(e => {});
 
   sfx.onended = () => {
     activeSFXCount--;
-    if(activeSFXCount === 0){
-      bgMusic.play().catch(e => {});
+    if(activeSFXCount <= 0){
+      activeSFXCount = 0;
+      try{ bgMusic.play().catch(e => {}); }catch(e){}
     }
   };
 }
@@ -372,6 +377,9 @@ function handleObjection(targetPlayer, afterCallback, objector) {
     // Yani doğru itiraz = hedefin attığı kart NE JOKER NE DE mafyaCard ise.
     const isObjectionCorrect = (card.type !== mafiaCard && card.type !== 'JOKER');
     
+    // Müzik durmuş olabilir, tüm ses sayacını sıfırla
+    activeSFXCount = 0;
+    
     // Ortadaki ilgili kartı aç (reveal) ve açılma sesi çal
     const entry = centerPile.find(e => e.card === card && !e.revealed);
     if(entry){
@@ -421,6 +429,11 @@ function handleObjection(targetPlayer, afterCallback, objector) {
                 }
 
                 renderUI();
+                
+                // Sonunda müzik başlat
+                activeSFXCount = 0;
+                bgMusic.play().catch(e => {});
+                
                 if(typeof afterCallback === 'function') afterCallback();
             }, 1500);
         } else {
@@ -450,6 +463,11 @@ function handleObjection(targetPlayer, afterCallback, objector) {
                 }
 
                 renderUI();
+                
+                // Sonunda müzik başlat
+                activeSFXCount = 0;
+                bgMusic.play().catch(e => {});
+                
                 if(typeof afterCallback === 'function') afterCallback();
             }, 1500);
         }
