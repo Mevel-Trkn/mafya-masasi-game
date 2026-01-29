@@ -1,1 +1,1 @@
-Please download the files from the package folder before running.
+> **Version:** 1.0
