@@ -1,0 +1,218 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #0d3b2e 0%, #1a5a42 100%);
+  color: white;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  padding: 10px;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  font-size: clamp(20px, 5vw, 32px);
+}
+
+button {
+  padding: clamp(10px, 3vw, 12px) clamp(15px, 5vw, 30px);
+  font-size: clamp(14px, 4vw, 16px);
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px 5px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:hover, button:active {
+  background-color: #c0392b;
+}
+
+/* Start Screen */
+#start-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Game Container */
+#game-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+#bot-hands {
+  background-color: rgba(0,0,0,0.3);
+  padding: clamp(10px, 3vw, 20px);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  min-height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
+}
+
+#bot-hands > div {
+  background-color: rgba(50,50,50,0.7);
+  padding: 8px 15px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 2px solid #e74c3c;
+  min-width: 100px;
+  font-size: clamp(12px, 3vw, 14px);
+  flex: 1 1 auto;
+  max-width: 150px;
+}
+
+#middle-area {
+  background-color: rgba(0,0,0,0.3);
+  padding: clamp(15px, 3vw, 20px);
+  border-radius: 10px;
+  margin: 20px 0;
+  min-height: 120px;
+}
+
+#mafia-card-display {
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #f39c12;
+}
+
+#center-pile {
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+#center-pile img {
+  width: clamp(60px, 15vw, 80px);
+  height: auto;
+  aspect-ratio: 2/3;
+  margin: 5px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+#player-area {
+  background-color: rgba(0,0,0,0.3);
+  padding: clamp(15px, 3vw, 20px);
+  border-radius: 10px;
+  border: 2px solid #27ae60;
+  margin-top: 20px;
+}
+
+#player-area h3 {
+  font-size: clamp(16px, 4vw, 20px);
+}
+
+#player-hand {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  gap: 8px;
+}
+
+#player-hand img {
+  width: clamp(60px, 15vw, 80px);
+  height: auto;
+  aspect-ratio: 2/3;
+  margin: 0;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+#player-hand img:hover, #player-hand img:active {
+  transform: scale(1.1) translateY(-8px);
+  box-shadow: 0 8px 15px rgba(255,215,0,0.6);
+}
+
+/* Old styles for compatibility */
+#oval {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  gap: 5px;
+}
+
+#center img {
+  width: clamp(80px, 20vw, 128px);
+  height: auto;
+  aspect-ratio: 2/3;
+  margin: 2px;
+}
+
+#playerCards img {
+  width: clamp(80px, 20vw, 128px);
+  height: auto;
+  aspect-ratio: 2/3;
+  margin: 5px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+#playerCards img:hover {
+  transform: scale(1.1);
+}
+
+.bot {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 5px;
+  width: clamp(100px, 25vw, 130px);
+  height: auto;
+  min-height: 100px;
+  background-color: #111;
+  color: white;
+  font-size: clamp(12px, 3vw, 14px);
+  padding: 10px;
+  word-wrap: break-word;
+}
+
+#itirazMenu {
+  margin-top: 20px;
+}
+
+/* Mobile touch optimization */
+@media (hover: none) and (pointer: coarse) {
+  #player-hand img:active {
+    transform: scale(1.15);
+  }
+}
+
+/* Tablet ve daha büyük ekranlar */
+@media (min-width: 768px) {
+  #game-container {
+    padding: 0 20px;
+  }
+  
+  #bot-hands > div {
+    min-width: 120px;
+    max-width: none;
+  }
+}
